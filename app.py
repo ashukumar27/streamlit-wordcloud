@@ -59,8 +59,8 @@ def generate_wordcloud(data, title, mask=None):
     plt.title(title)
     plt.show()
     st.pyplot()
-    
-generate_better_wordcloud(long_string, 'WordCloud', mask=None)
+
+generate_wordcloud(long_string, 'WordCloud', mask=None)
 
 
 #st.write(df.head())
