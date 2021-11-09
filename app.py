@@ -22,6 +22,10 @@ st.sidebar.header("Configuration Options")
 
 
 df = pd.read_csv('data.csv')
+df['Reason_to_Visit_Cleaned'].fillna(" ",inplace=True)
+
+
+
 
 word_cloud_data = df['Reason_to_Visit_Cleaned']
 
