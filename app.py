@@ -8,6 +8,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 
 st.write("""
 # Visualization of Text Data Processing
@@ -16,6 +18,17 @@ Wordcloud and LDA based Topic Modeling
 
 
 st.sidebar.header("Configuration Options")
+
+
+
+df = pd.read_csv('data.csv')
+
+st.write(df.head())
+
+
+
+
+
 
 
 
