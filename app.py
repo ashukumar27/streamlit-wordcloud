@@ -20,12 +20,12 @@ st.write("""
 st.sidebar.header("Configuration Options")
 
 
-@st.cache
-def read_data(filename):
-	df = pd.read_csv(filename)
+# @st.cache
+# def read_data(filename):
+# 	df = pd.read_csv(filename)
 
 
-df = read_data('data.csv')
+df = pd.read_csv('data.csv')
 
 
 column_dict = {'Reason  to  Visit':'Reason_to_Visit_Cleaned',
