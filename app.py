@@ -13,7 +13,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.write("""
 # Visualization of Text Data Processing
-Wordcloud and LDA based Topic Modeling
+### Wordcloud 
 """)
 
 
@@ -51,7 +51,7 @@ st.write('You selected:', option)
 st.write("Mapped",column_dict[option])
 
 
-word_cloud_data = df['Reason_to_Visit_Cleaned']
+word_cloud_data = df[column_dict[option]]
 
 long_string = ','.join(list(word_cloud_data.values))
 long_string=long_string.replace('nan', '')
