@@ -50,20 +50,20 @@ option = st.sidebar.selectbox(
 'Select One',
 ('Reason  to  Visit','Savings  Goal','Purchase  Rewards  Preference','Payments  Challenges','Expense  Types','Expansion  Plans','Fut  Large  Equipment  Purchase','Debt  Consolidation','Investment  Plans','Borrow  Unexpected  Expense','Home  Improvement  Purchase  Plans','Refinance  Outstanding  Debt','Refinance  Current  Mortgage  Rate','Invest  Comfort  Level','Invest  Investment  Review','Invest  Retirement  College  Other'))
 
-st.write('You selected:', option)
+st.write('Selected Field:', option)
 
 #Filter on Account Type
 df['Record_Type'].fillna(" ",inplace=True)
 AccountType = df['Record_Type'].unique()
 AccountTypeSelected = st.sidebar.selectbox('Select Account Type', ('Personal','Business'))
 df_selected  = df[df['Record_Type'].isin([AccountTypeSelected])]
-st.write(df_selected.Record_Type.unique())
+st.write('Selected Account Type:', AccountTypeSelected)
 
 
 
-df[column_dict[option]].fillna(" ",inplace=True)
+df_selected[column_dict[option]].fillna(" ",inplace=True)
 
-word_cloud_data = df[column_dict[option]]
+word_cloud_data = df_selected[column_dict[option]]
 
 long_string = ','.join(list(word_cloud_data.values))
 long_string=long_string.replace('nan', '')
