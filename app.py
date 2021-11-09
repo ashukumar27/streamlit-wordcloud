@@ -22,7 +22,6 @@ st.sidebar.header("Configuration Options")
 
 
 df = pd.read_csv('data.csv')
-df['Reason_to_Visit_Cleaned'].fillna(" ",inplace=True)
 
 
 column_dict = {'Reason  to  Visit':'Reason_to_Visit_Cleaned',
@@ -50,6 +49,7 @@ option = st.sidebar.selectbox(
 st.write('You selected:', option)
 st.write("Mapped",column_dict[option])
 
+df[column_dict[option]].fillna(" ",inplace=True)
 
 word_cloud_data = df[column_dict[option]]
 
