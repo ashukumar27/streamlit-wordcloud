@@ -52,7 +52,7 @@ option = st.sidebar.selectbox(
 
 st.write('You selected:', option)
 
-
+st.write(df.columns)
 #Filter on Account Type
 #df['Record_Type'].fillna(" ",inplace=True)
 #AccountType = df['Record_Type'].unique()
