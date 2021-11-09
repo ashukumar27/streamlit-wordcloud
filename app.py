@@ -62,40 +62,40 @@ st.write(df_selected.Record_Type.unique())
 
 
 
-# df[column_dict[option]].fillna(" ",inplace=True)
+df[column_dict[option]].fillna(" ",inplace=True)
 
-# word_cloud_data = df[column_dict[option]]
+word_cloud_data = df[column_dict[option]]
 
-# long_string = ','.join(list(word_cloud_data.values))
-# long_string=long_string.replace('nan', '')
-
-
+long_string = ','.join(list(word_cloud_data.values))
+long_string=long_string.replace('nan', '')
 
 
 
 
-# color_map = st.selectbox(
-# 'ColorMap',
-# ('RdYlGn','Greys', 'Purples', 'Blues', 'Greens', 'Oranges', 'Reds',
-#             'YlOrBr', 'YlOrRd', 'OrRd', 'PuRd', 'RdPu', 'BuPu',
-#             'GnBu', 'PuBu', 'YlGnBu', 'PuBuGn', 'BuGn', 'YlGn'))
 
 
-# def generate_wordcloud(data, title, mask=None,colormap='RdYlGn'):
-#     cloud = WordCloud(scale=3,
-#                       max_words=150,
-#                       colormap=color_map,
-#                       mask=None,
-#                       background_color='white',
-#                       collocations=True).generate_from_text(data)
-#     plt.figure(figsize=(10,8))
-#     plt.imshow(cloud)
-#     plt.axis('off')
-#     plt.title(title)
-#     plt.show()
-#     st.pyplot()
+color_map = st.selectbox(
+'ColorMap',
+('RdYlGn','Greys', 'Purples', 'Blues', 'Greens', 'Oranges', 'Reds',
+            'YlOrBr', 'YlOrRd', 'OrRd', 'PuRd', 'RdPu', 'BuPu',
+            'GnBu', 'PuBu', 'YlGnBu', 'PuBuGn', 'BuGn', 'YlGn'))
 
-# generate_wordcloud(long_string, 'WordCloud', mask=None)
+
+def generate_wordcloud(data, title, mask=None,colormap='RdYlGn'):
+    cloud = WordCloud(scale=3,
+                      max_words=150,
+                      colormap=color_map,
+                      mask=None,
+                      background_color='white',
+                      collocations=True).generate_from_text(data)
+    plt.figure(figsize=(10,8))
+    plt.imshow(cloud)
+    plt.axis('off')
+    plt.title(title)
+    plt.show()
+    st.pyplot()
+
+generate_wordcloud(long_string, 'WordCloud', mask=None)
 
 
 # #st.write(df.head())
