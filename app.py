@@ -57,14 +57,14 @@ st.write('You selected:', option)
 #df['Record_Type'].fillna(" ",inplace=True)
 #AccountType = df['Record_Type'].unique()
 AccountTypeSelected = st.sidebar.multiselect('Select Account Type', ('Personal','Business'),default=["Business"])
-df_selected  = df['Record_Type'].isin(AccountTypeSelected)
-#st.write(AccountType)
+#df_selected  = df['Record_Type'].isin(AccountTypeSelected)
+st.write(AccountTypeSelected)
 
 
 
-df_selected[column_dict[option]].fillna(" ",inplace=True)
+df[column_dict[option]].fillna(" ",inplace=True)
 
-word_cloud_data = df_selected[column_dict[option]]
+word_cloud_data = df[column_dict[option]]
 
 long_string = ','.join(list(word_cloud_data.values))
 long_string=long_string.replace('nan', '')
