@@ -51,7 +51,6 @@ def generate_wordcloud(data, title, mask=None):
                       colormap='RdYlGn',
                       mask=None,
                       background_color='white',
-                      stopwords=stopwords,
                       collocations=True).generate_from_text(data)
     plt.figure(figsize=(10,8))
     plt.imshow(cloud)
