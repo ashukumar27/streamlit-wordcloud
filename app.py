@@ -20,8 +20,12 @@ st.write("""
 st.sidebar.header("Configuration Options")
 
 
+@st.cache
+def read_data(filename):
+	df = pd.read_csv(filename)
 
-df = pd.read_csv('data.csv')
+
+df = read_data('data.csv')
 
 
 column_dict = {'Reason  to  Visit':'Reason_to_Visit_Cleaned',
@@ -49,9 +53,18 @@ option = st.sidebar.selectbox(
 st.write('You selected:', option)
 
 
-df[column_dict[option]].fillna(" ",inplace=True)
 
-word_cloud_data = df[column_dict[option]]
+AccountType = df['Record_Type'].unique()
+AccountTypeSelected = st.sidebar.multiselect('Select Account Type', AccountType)
+
+df_selected  = df['Record_Type'].isin(AccountTypeSelected)
+
+
+
+
+df_selected[column_dict[option]].fillna(" ",inplace=True)
+
+word_cloud_data = df_selected[column_dict[option]]
 
 long_string = ','.join(list(word_cloud_data.values))
 long_string=long_string.replace('nan', '')
