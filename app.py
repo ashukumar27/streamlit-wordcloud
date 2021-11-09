@@ -33,15 +33,34 @@ long_string = ','.join(list(word_cloud_data.values))
 long_string=long_string.replace('nan', '')
 
 # WordCloud object
-wordcloud2 = WordCloud(background_color="black", max_words=5000,  width=1600, height=800, max_font_size=200)
-# Generate a word cloud
-wordcloud2.generate(long_string)
+# wordcloud2 = WordCloud(background_color="black", max_words=5000,  width=1600, height=800, max_font_size=200)
+# # Generate a word cloud
+# wordcloud2.generate(long_string)
 
-plt.figure( figsize=(20,10), facecolor='k')
-plt.imshow(wordcloud2, interpolation='bilinear')
-plt.axis("off")
-plt.show()
-st.pyplot()
+# plt.figure( figsize=(20,10), facecolor='k')
+# plt.imshow(wordcloud2, interpolation='bilinear')
+# plt.axis("off")
+# plt.show()
+# st.pyplot()
+
+
+
+def generate_wordcloud(data, title, mask=None):
+    cloud = WordCloud(scale=3,
+                      max_words=150,
+                      colormap='RdYlGn',
+                      mask=None,
+                      background_color='white',
+                      stopwords=stopwords,
+                      collocations=True).generate_from_text(data)
+    plt.figure(figsize=(10,8))
+    plt.imshow(cloud)
+    plt.axis('off')
+    plt.title(title)
+    plt.show()
+    st.pyplot()
+    
+generate_better_wordcloud(long_string, 'WordCloud', mask=None)
 
 
 #st.write(df.head())
