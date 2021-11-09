@@ -47,7 +47,7 @@ option = st.sidebar.selectbox(
 ('Reason  to  Visit','Savings  Goal','Purchase  Rewards  Preference','Payments  Challenges','Expense  Types','Expansion  Plans','Fut  Large  Equipment  Purchase','Debt  Consolidation','Investment  Plans','Borrow  Unexpected  Expense','Home  Improvement  Purchase  Plans','Refinance  Outstanding  Debt','Refinance  Current  Mortgage  Rate','Invest  Comfort  Level','Invest  Investment  Review','Invest  Retirement  College  Other'))
 
 st.write('You selected:', option)
-st.write("Mapped",column_dict[option])
+
 
 df[column_dict[option]].fillna(" ",inplace=True)
 
@@ -58,12 +58,17 @@ long_string=long_string.replace('nan', '')
 
 
 
+color_map = st.selectbox(
+'ColorMap',
+('RdYlGn','Greys', 'Purples', 'Blues', 'Greens', 'Oranges', 'Reds',
+            'YlOrBr', 'YlOrRd', 'OrRd', 'PuRd', 'RdPu', 'BuPu',
+            'GnBu', 'PuBu', 'YlGnBu', 'PuBuGn', 'BuGn', 'YlGn'))
 
 
-def generate_wordcloud(data, title, mask=None):
+def generate_wordcloud(data, title, mask=None,colormap='RdYlGn'):
     cloud = WordCloud(scale=3,
                       max_words=150,
-                      colormap='RdYlGn',
+                      colormap=color_map,
                       mask=None,
                       background_color='white',
                       collocations=True).generate_from_text(data)
