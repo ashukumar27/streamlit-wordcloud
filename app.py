@@ -54,7 +54,7 @@ st.write('You selected:', option)
 
 
 #Filter on Account Type
-df['Record_Type'].fillna(" ",inplace=True)
+#df['Record_Type'].fillna(" ",inplace=True)
 AccountType = df['Record_Type'].unique()
 AccountTypeSelected = st.sidebar.multiselect('Select Account Type', AccountType)
 df_selected  = df['Record_Type'].isin(AccountTypeSelected)
