@@ -53,6 +53,12 @@ option = st.sidebar.selectbox(
 st.write('You selected:', option)
 
 
+#Filter on Account Type
+df['Record_Type'].fillna(" ",inplace=True)
+AccountType = df['Record_Type'].unique()
+AccountTypeSelected = st.sidebar.multiselect('Select Account Type', AccountType)
+df_selected  = df['Record_Type'].isin(AccountTypeSelected)
+st.write(AccountType)
 
 
 
@@ -64,12 +70,7 @@ long_string = ','.join(list(word_cloud_data.values))
 long_string=long_string.replace('nan', '')
 
 
-df['Record_Type'].fillna(" ",inplace=True)
 
-AccountType = df['Record_Type'].unique()
-AccountTypeSelected = st.sidebar.multiselect('Select Account Type', AccountType)
-df_selected  = df['Record_Type'].isin(AccountTypeSelected)
-st.write(AccountType)
 
 
 
