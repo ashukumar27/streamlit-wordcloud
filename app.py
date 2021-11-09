@@ -25,6 +25,30 @@ df = pd.read_csv('data.csv')
 df['Reason_to_Visit_Cleaned'].fillna(" ",inplace=True)
 
 
+column_dict = {'Reason  to  Visit':'Reason_to_Visit_Cleaned',
+'Savings  Goal':'Savings_Goal_Cleaned',
+'Purchase  Rewards  Preference':'Purchase_Rewards_Preference_Cleaned',
+'Payments  Challenges':'Payments_Challenges_Cleaned',
+'Expense  Types':'Expense_Types_Cleaned',
+'Expansion  Plans':'Expansion_Plans_Cleaned',
+'Fut  Large  Equipment  Purchase':'Fut_Large_Equipment_Purchase_Cleaned',
+'Debt  Consolidation':'Debt_Consolidation_Cleaned',
+'Investment  Plans':'Investment_Plans_Cleaned',
+'Borrow  Unexpected  Expense':'Borrow_Unexpected_Expense_Cleaned',
+'Home  Improvement  Purchase  Plans':'Home_Improvement_Purchase_Plans_Cleaned',
+'Refinance  Outstanding  Debt':'Refinance_Outstanding_Debt_Cleaned',
+'Refinance  Current  Mortgage  Rate':'Refinance_Current_Mortgage_Rate_Cleaned',
+'Invest  Comfort  Level':'Invest_Comfort_Level_Cleaned',
+'Invest  Investment  Review':'Invest_Investment_Review_Cleaned',
+'Invest  Retirement  College  Other':'Invest_Retirement_College_Other_Cleaned'}
+
+
+option = st.sidebar.selectbox(
+'Select One',
+('Reason  to  Visit','Savings  Goal','Purchase  Rewards  Preference','Payments  Challenges','Expense  Types','Expansion  Plans','Fut  Large  Equipment  Purchase','Debt  Consolidation','Investment  Plans','Borrow  Unexpected  Expense','Home  Improvement  Purchase  Plans','Refinance  Outstanding  Debt','Refinance  Current  Mortgage  Rate','Invest  Comfort  Level','Invest  Investment  Review','Invest  Retirement  College  Other'))
+
+st.write('You selected:', option)
+st.write("Mapped",column_dict[option])
 
 
 word_cloud_data = df['Reason_to_Visit_Cleaned']
@@ -32,16 +56,7 @@ word_cloud_data = df['Reason_to_Visit_Cleaned']
 long_string = ','.join(list(word_cloud_data.values))
 long_string=long_string.replace('nan', '')
 
-# WordCloud object
-# wordcloud2 = WordCloud(background_color="black", max_words=5000,  width=1600, height=800, max_font_size=200)
-# # Generate a word cloud
-# wordcloud2.generate(long_string)
 
-# plt.figure( figsize=(20,10), facecolor='k')
-# plt.imshow(wordcloud2, interpolation='bilinear')
-# plt.axis("off")
-# plt.show()
-# st.pyplot()
 
 
 
