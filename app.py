@@ -18,15 +18,7 @@ Wordcloud and LDA based Topic Modeling
 st.sidebar.header("Configuration Options")
 
 
-#Read Data
 
-#df = pd.read_csv('./data/cleaned/SF_CFA_INCREMENTAL_20210825_cleaned.txt')
-
-
-word_cloud_data = df['Reason_to_Visit_Cleaned']
-
-
-word_list = list(word_cloud_data.values)
 
 text = 'Fun, fun, awesome, awesome, tubular, astounding, superb, great, amazing, amazing, amazing, amazing'
 
