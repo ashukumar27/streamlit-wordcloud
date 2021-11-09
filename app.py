@@ -56,7 +56,7 @@ st.write('You selected:', option)
 #Filter on Account Type
 #df['Record_Type'].fillna(" ",inplace=True)
 #AccountType = df['Record_Type'].unique()
-AccountTypeSelected = st.sidebar.selectbox('Select Account Type', ('Personal','Business'),default=["Business"])
+AccountTypeSelected = st.sidebar.selectbox('Select Account Type', ('Personal','Business'))
 df_selected  = df['Record_Type'].isin(AccountTypeSelected)
 st.write(AccountTypeSelected)
 
