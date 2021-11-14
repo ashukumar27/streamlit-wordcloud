@@ -133,6 +133,47 @@ data_words = list(sent_to_words(data))
 data_words = remove_stopwords(data_words)
 
 
-st.write(len(data_words))
+#st.write(len(data_words))
 
-st.write(data_words[:][0])
+#st.write(data_words[:][0])
+
+
+import gensim.corpora as corpora
+
+# Create Dictionary
+id2word = corpora.Dictionary(data_words)
+
+
+texts = data_words #corpus
+
+# Term Document Frequency
+corpus = [id2word.doc2bow(text) for text in texts]
+
+# View
+#print(corpus[:1][0][:30])
+
+
+#LDA Modelling
+from pprint import pprint
+
+num_topics = 10
+
+# Build LDA model
+lda_model = gensim.models.LdaMulticore(corpus=corpus,
+                                       id2word=id2word,
+                                       num_topics=num_topics)
+
+# Print the Keyword in the 10 topics
+#pprint(lda_model.print_topics())
+doc_lda = lda_model[corpus]
+
+
+import pyLDAvis
+import pyLDAvis.gensim_models
+
+# Visualize the topics
+pyLDAvis.enable_notebook()
+
+vis = pyLDAvis.gensim_models.prepare(lda_model, corpus, id2word, mds="mmds", R=30)
+st.vis
+
