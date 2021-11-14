@@ -103,18 +103,36 @@ generate_wordcloud(long_string, 'WordCloud', mask=None)
 
 
 
+#### LDA
+
+import gensim
+from gensim.utils import simple_preprocess
+
+
+stop_words = ['NaN','nan','na']
+
+def sent_to_words(sentences):
+    for sentence in sentences:
+        # deacc=True removes punctuations
+        yield(gensim.utils.simple_preprocess(str(sentence), deacc=True))
+
+def remove_stopwords(texts):
+    return [[word for word in simple_preprocess(str(doc)) 
+             if word not in stop_words] for doc in texts]
 
 
 
+data = df['Reason_to_Visit_Cleaned'].values.tolist()
 
-# # text = 'Fun, fun, awesome, awesome, tubular, astounding, superb, great, amazing, amazing, amazing, amazing'
+data_words = list(sent_to_words(data))
 
-# # Create and generate a word cloud image:
-# wordcloud = WordCloud().generate(text)
+ 
 
-# # Display the generated image:
-# plt.imshow(wordcloud, interpolation='bilinear')
-# plt.axis("off")
-# plt.show()
-# st.pyplot()
+# Removing the stop words
 
+data_words = remove_stopwords(data_words)
+
+
+st.write(len(data_words))
+
+st.write(data_words[:][0])
