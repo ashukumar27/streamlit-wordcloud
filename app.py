@@ -172,8 +172,13 @@ import pyLDAvis
 import pyLDAvis.gensim_models
 
 # Visualize the topics
-pyLDAvis.enable_notebook()
+#pyLDAvis.enable_notebook()
 
-vis = pyLDAvis.gensim_models.prepare(lda_model, corpus, id2word, mds="mmds", R=30)
-st.vis
+#vis = pyLDAvis.gensim_models.prepare(lda_model, corpus, id2word, mds="mmds", R=30)
+#st.vis
+
+
+html_string = pyLDAvis.gensim_models.prepared_data_to_html(lda_model, corpus, id2word, mds="mmds", R=30)
+from streamlit import components
+components.v1.html(diplo_string, width=1300, height=800, scrolling=True)
 
