@@ -180,5 +180,5 @@ vis = pyLDAvis.gensim_models.prepare(lda_model, corpus, id2word, mds="mmds", R=3
 
 html_string = pyLDAvis.gensim_models.prepared_data_to_html(vis)
 from streamlit import components
-components.v1.html(vis, width=1300, height=800, scrolling=True)
+st.html(vis, width=1300, height=800, scrolling=True)
 
