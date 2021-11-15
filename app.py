@@ -134,7 +134,7 @@ def preprocess(text):
 
 
 
-processed_docs = documents['Reason_to_Visit_Cleaned'].map(preprocess)
+processed_docs = df_selected['Reason_to_Visit_Cleaned'].map(preprocess)
 
 
 
