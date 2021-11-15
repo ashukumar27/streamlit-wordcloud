@@ -105,80 +105,65 @@ generate_wordcloud(long_string, 'WordCloud', mask=None)
 
 #### LDA
 
-import gensim
-from gensim.utils import simple_preprocess
-
-
-stop_words = ['NaN','nan','na']
-
-def sent_to_words(sentences):
-    for sentence in sentences:
-        # deacc=True removes punctuations
-        yield(gensim.utils.simple_preprocess(str(sentence), deacc=True))
-
-def remove_stopwords(texts):
-    return [[word for word in simple_preprocess(str(doc)) 
-             if word not in stop_words] for doc in texts]
-
-
-
-data = df['Reason_to_Visit_Cleaned'].values.tolist()
-
-data_words = list(sent_to_words(data))
-
- 
-
-# Removing the stop words
-
-data_words = remove_stopwords(data_words)
-
-
-#st.write(len(data_words))
-
-#st.write(data_words[:][0])
-
-
-import gensim.corpora as corpora
-
-# Create Dictionary
-id2word = corpora.Dictionary(data_words)
-
-
-texts = data_words #corpus
-
-# Term Document Frequency
-corpus = [id2word.doc2bow(text) for text in texts]
-
-# View
-#print(corpus[:1][0][:30])
-
 
 #LDA Modelling
-from pprint import pprint
-
-num_topics = 10
-
-# Build LDA model
-lda_model = gensim.models.LdaMulticore(corpus=corpus,
-                                       id2word=id2word,
-                                       num_topics=num_topics)
-
-# Print the Keyword in the 10 topics
-#pprint(lda_model.print_topics())
-doc_lda = lda_model[corpus]
 
 
-import pyLDAvis
-import pyLDAvis.gensim_models
+import gensim
+from gensim.utils import simple_preprocess
+from gensim.parsing.preprocessing import STOPWORDS
+from nltk.stem import WordNetLemmatizer, SnowballStemmer
+from nltk.stem.porter import *
+import numpy as np
+np.random.seed(2018)
+import nltk
+#nltk.download('wordnet')
+stemmer = SnowballStemmer(language='english')
 
-# Visualize the topics
-pyLDAvis.enable_notebook()
 
-vis = pyLDAvis.gensim_models.prepare(lda_model, corpus, id2word, mds="mmds", R=30)
-#st.vis
+def lemmatize_stemming(text):
+    return stemmer.stem(text)
+def preprocess(text):
+    result = []
+    for token in gensim.utils.simple_preprocess(text):
+        if token not in gensim.parsing.preprocessing.STOPWORDS and len(token) > 3:
+            #result.append(token)
+            result.append(lemmatize_stemming(token))
+    return result
 
 
-html_string = pyLDAvis.gensim_models.prepared_data_to_html(vis)
-from streamlit import components
-st.html(vis, width=1300, height=800, scrolling=True)
 
+
+processed_docs = documents['Reason_to_Visit_Cleaned'].map(preprocess)
+
+
+
+
+dictionary = gensim.corpora.Dictionary(processed_docs)
+
+
+
+
+
+dictionary.filter_extremes(no_below=15, no_above=0.5, keep_n=100000)
+
+
+
+
+bow_corpus = [dictionary.doc2bow(doc) for doc in processed_docs]
+
+
+
+
+from gensim import corpora, models
+tfidf = models.TfidfModel(bow_corpus)
+corpus_tfidf = tfidf[bow_corpus]
+
+
+
+lda_model = gensim.models.LdaMulticore(bow_corpus, num_topics=10, id2word=dictionary, passes=2, workers=2)
+
+
+lda_model_tfidf = gensim.models.LdaMulticore(corpus_tfidf, num_topics=10, id2word=dictionary, passes=2, workers=4)
+for idx, topic in lda_model_tfidf.print_topics(-1):
+    sr.write('Topic: {} Word: {}'.format(idx, topic))

@@ -23,6 +23,8 @@ decorator==5.1.0
 defusedxml==0.7.1
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz
 entrypoints==0.3
+funcy==1.16
+future==0.18.2
 gensim==4.1.2
 gitdb==4.0.9
 GitPython==3.1.24
@@ -54,6 +56,7 @@ nbformat==5.1.3
 nest-asyncio==1.5.1
 nltk==3.6.5
 notebook==6.4.5
+numexpr==2.7.3
 numpy==1.21.4
 packaging==21.2
 pandas==1.3.4
@@ -73,6 +76,7 @@ pycparser==2.21
 pydantic==1.8.2
 pydeck==0.7.1
 Pygments==2.10.0
+pyLDAvis==3.3.1
 pyparsing==2.4.7
 pyrsistent==0.18.0
 python-dateutil==2.8.2
@@ -81,9 +85,11 @@ pytz-deprecation-shim==0.1.0.post0
 pyzmq==22.3.0
 regex==2021.11.2
 requests==2.26.0
+scikit-learn==1.0.1
 scipy==1.7.2
 Send2Trash==1.8.0
 six==1.16.0
+sklearn==0.0
 smart-open==5.2.1
 smmap==5.0.0
 spacy==3.2.0
@@ -95,6 +101,7 @@ terminado==0.12.1
 testpath==0.5.0
 textblob==0.17.1
 thinc==8.0.13
+threadpoolctl==3.0.0
 toml==0.10.2
 toolz==0.11.2
 tornado==6.1
