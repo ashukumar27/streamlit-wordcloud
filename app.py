@@ -109,61 +109,61 @@ generate_wordcloud(long_string, 'WordCloud', mask=None)
 #LDA Modelling
 
 
-import gensim
-from gensim.utils import simple_preprocess
-from gensim.parsing.preprocessing import STOPWORDS
-from nltk.stem import WordNetLemmatizer, SnowballStemmer
-from nltk.stem.porter import *
-import numpy as np
-np.random.seed(2018)
-import nltk
-#nltk.download('wordnet')
-stemmer = SnowballStemmer(language='english')
+# import gensim
+# from gensim.utils import simple_preprocess
+# from gensim.parsing.preprocessing import STOPWORDS
+# from nltk.stem import WordNetLemmatizer, SnowballStemmer
+# from nltk.stem.porter import *
+# import numpy as np
+# np.random.seed(2018)
+# import nltk
+# #nltk.download('wordnet')
+# stemmer = SnowballStemmer(language='english')
 
 
-def lemmatize_stemming(text):
-    return stemmer.stem(text)
-def preprocess(text):
-    result = []
-    for token in gensim.utils.simple_preprocess(text):
-        if token not in gensim.parsing.preprocessing.STOPWORDS and len(token) > 3:
-            #result.append(token)
-            result.append(lemmatize_stemming(token))
-    return result
-
-
-
-
-processed_docs = df_selected['Reason_to_Visit_Cleaned'].map(preprocess)
+# def lemmatize_stemming(text):
+#     return stemmer.stem(text)
+# def preprocess(text):
+#     result = []
+#     for token in gensim.utils.simple_preprocess(text):
+#         if token not in gensim.parsing.preprocessing.STOPWORDS and len(token) > 3:
+#             #result.append(token)
+#             result.append(lemmatize_stemming(token))
+#     return result
 
 
 
 
-dictionary = gensim.corpora.Dictionary(processed_docs)
+# processed_docs = df_selected['Reason_to_Visit_Cleaned'].map(preprocess)
+
+
+
+
+# dictionary = gensim.corpora.Dictionary(processed_docs)
 
 
 
 
 
-dictionary.filter_extremes(no_below=15, no_above=0.5, keep_n=100000)
+# dictionary.filter_extremes(no_below=15, no_above=0.5, keep_n=100000)
 
 
 
 
-bow_corpus = [dictionary.doc2bow(doc) for doc in processed_docs]
+# bow_corpus = [dictionary.doc2bow(doc) for doc in processed_docs]
 
 
 
 
-from gensim import corpora, models
-tfidf = models.TfidfModel(bow_corpus)
-corpus_tfidf = tfidf[bow_corpus]
+# from gensim import corpora, models
+# tfidf = models.TfidfModel(bow_corpus)
+# corpus_tfidf = tfidf[bow_corpus]
 
 
 
-lda_model = gensim.models.LdaMulticore(bow_corpus, num_topics=10, id2word=dictionary, passes=2, workers=2)
+# lda_model = gensim.models.LdaMulticore(bow_corpus, num_topics=10, id2word=dictionary, passes=2, workers=2)
 
 
-lda_model_tfidf = gensim.models.LdaMulticore(corpus_tfidf, num_topics=10, id2word=dictionary, passes=2, workers=4)
-for idx, topic in lda_model_tfidf.print_topics(-1):
-    sr.write('Topic: {} Word: {}'.format(idx, topic))
+# lda_model_tfidf = gensim.models.LdaMulticore(corpus_tfidf, num_topics=10, id2word=dictionary, passes=2, workers=4)
+# for idx, topic in lda_model_tfidf.print_topics(-1):
+#     sr.write('Topic: {} Word: {}'.format(idx, topic))
