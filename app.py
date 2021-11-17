@@ -109,61 +109,27 @@ generate_wordcloud(long_string, 'WordCloud', mask=None)
 #LDA Modelling
 
 
-# import gensim
-# from gensim.utils import simple_preprocess
-# from gensim.parsing.preprocessing import STOPWORDS
-# from nltk.stem import WordNetLemmatizer, SnowballStemmer
-# from nltk.stem.porter import *
-# import numpy as np
-# np.random.seed(2018)
-# import nltk
-# #nltk.download('wordnet')
-# stemmer = SnowballStemmer(language='english')
+import gensim
+from gensim.utils import simple_preprocess
+from gensim.parsing.preprocessing import STOPWORDS
+from nltk.stem import WordNetLemmatizer, SnowballStemmer
+from nltk.stem.porter import *
+import numpy as np
+np.random.seed(2018)
+import nltk
+#nltk.download('wordnet')
+stemmer = SnowballStemmer(language='english')
 
 
-# def lemmatize_stemming(text):
-#     return stemmer.stem(text)
-# def preprocess(text):
-#     result = []
-#     for token in gensim.utils.simple_preprocess(text):
-#         if token not in gensim.parsing.preprocessing.STOPWORDS and len(token) > 3:
-#             #result.append(token)
-#             result.append(lemmatize_stemming(token))
-#     return result
+dict_ = './dict/dict_Reason_to_Visit_Cleaned'
+pickle.dump(dictionary, open(dict_, 'wb'))
 
 
+corpus_ = './corpus/corpus_Reason_to_Visit_Cleaned'
+pickle.dump(corpus, open(dict_, 'wb'))
 
 
-# processed_docs = df_selected['Reason_to_Visit_Cleaned'].map(preprocess)
+lda_model_tfidf = gensim.models.LdaMulticore(corpus, num_topics=10, id2word=dictionary, passes=2, workers=4)
 
-
-
-
-# dictionary = gensim.corpora.Dictionary(processed_docs)
-
-
-
-
-
-# dictionary.filter_extremes(no_below=15, no_above=0.5, keep_n=100000)
-
-
-
-
-# bow_corpus = [dictionary.doc2bow(doc) for doc in processed_docs]
-
-
-
-
-# from gensim import corpora, models
-# tfidf = models.TfidfModel(bow_corpus)
-# corpus_tfidf = tfidf[bow_corpus]
-
-
-
-# lda_model = gensim.models.LdaMulticore(bow_corpus, num_topics=10, id2word=dictionary, passes=2, workers=2)
-
-
-# lda_model_tfidf = gensim.models.LdaMulticore(corpus_tfidf, num_topics=10, id2word=dictionary, passes=2, workers=4)
-# for idx, topic in lda_model_tfidf.print_topics(-1):
-#     sr.write('Topic: {} Word: {}'.format(idx, topic))
+for idx, topic in lda_model_tfidf.print_topics(-1):
+    sr.write('Topic: {} Word: {}'.format(idx, topic))
