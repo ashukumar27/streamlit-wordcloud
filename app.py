@@ -109,22 +109,22 @@ generate_wordcloud(long_string, 'WordCloud', mask=None)
 #LDA Modelling
 
 
-# import gensim
-# from gensim.utils import simple_preprocess
-# from gensim.parsing.preprocessing import STOPWORDS
+import gensim
+from gensim.utils import simple_preprocess
+from gensim.parsing.preprocessing import STOPWORDS
 
-# import numpy as np
-
-
-# dict_ = './dict/dict_Reason_to_Visit_Cleaned'
-# pickle.dump(dictionary, open(dict_, 'wb'))
+import numpy as np
 
 
-# corpus_ = './corpus/corpus_Reason_to_Visit_Cleaned'
-# pickle.dump(corpus, open(dict_, 'wb'))
+dict_ = './dict/dict_Reason_to_Visit_Cleaned'
+pickle.dump(dictionary, open(dict_, 'wb'))
 
 
-# lda_model_tfidf = gensim.models.LdaMulticore(corpus, num_topics=10, id2word=dictionary, passes=2, workers=4)
+corpus_ = './corpus/corpus_Reason_to_Visit_Cleaned'
+pickle.dump(corpus, open(dict_, 'wb'))
 
-# for idx, topic in lda_model_tfidf.print_topics(-1):
-#     sr.write('Topic: {} Word: {}'.format(idx, topic))
+
+lda_model_tfidf = gensim.models.LdaMulticore(corpus, num_topics=10, id2word=dictionary, passes=2, workers=4)
+
+for idx, topic in lda_model_tfidf.print_topics(-1):
+    sr.write('Topic: {} Word: {}'.format(idx, topic))
