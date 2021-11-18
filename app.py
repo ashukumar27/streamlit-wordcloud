@@ -119,7 +119,7 @@ import numpy as np
 dict_ = './dict/dict_Reason_to_Visit_Cleaned'
 # pickle.dump(dictionary, open(dict_, 'wb'))
 
-with open('dict_', 'rb') as f1:
+with open('/dict/dict_Reason_to_Visit_Cleaned', 'rb') as f1:
     dictionary = pickle.load(f1)
 
 
@@ -127,7 +127,7 @@ with open('dict_', 'rb') as f1:
 corpus_ = './corpus/corpus_Reason_to_Visit_Cleaned'
 # pickle.dump(corpus, open(dict_, 'wb'))
 
-with open('corpus_', 'rb') as f2:
+with open('/corpus/corpus_Reason_to_Visit_Cleaned', 'rb') as f2:
     corpus = pickle.load(f2)
 
 
