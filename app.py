@@ -116,7 +116,7 @@ from gensim.parsing.preprocessing import STOPWORDS
 import numpy as np
 
 
-# dict_ = './dict/dict_Reason_to_Visit_Cleaned'
+dict_ = './dict/dict_Reason_to_Visit_Cleaned'
 # pickle.dump(dictionary, open(dict_, 'wb'))
 
 with open('dict_', 'rb') as f1:
@@ -124,7 +124,7 @@ with open('dict_', 'rb') as f1:
 
 
 
-# corpus_ = './corpus/corpus_Reason_to_Visit_Cleaned'
+corpus_ = './corpus/corpus_Reason_to_Visit_Cleaned'
 # pickle.dump(corpus, open(dict_, 'wb'))
 
 with open('corpus_', 'rb') as f2:
