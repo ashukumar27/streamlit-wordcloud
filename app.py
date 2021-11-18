@@ -116,12 +116,20 @@ from gensim.parsing.preprocessing import STOPWORDS
 import numpy as np
 
 
-dict_ = './dict/dict_Reason_to_Visit_Cleaned'
-pickle.dump(dictionary, open(dict_, 'wb'))
+# dict_ = './dict/dict_Reason_to_Visit_Cleaned'
+# pickle.dump(dictionary, open(dict_, 'wb'))
+
+with open('dict_', 'rb') as f1:
+    dictionary = pickle.load(f1)
 
 
-corpus_ = './corpus/corpus_Reason_to_Visit_Cleaned'
-pickle.dump(corpus, open(dict_, 'wb'))
+
+# corpus_ = './corpus/corpus_Reason_to_Visit_Cleaned'
+# pickle.dump(corpus, open(dict_, 'wb'))
+
+with open('corpus_', 'rb') as f2:
+    corpus = pickle.load(f2)
+
 
 
 lda_model_tfidf = gensim.models.LdaMulticore(corpus, num_topics=10, id2word=dictionary, passes=2, workers=4)
